@@ -1,0 +1,12 @@
+test\TaskTest.class
+test\CompletatoDecoratorTest.class
+test\FileManagerTest.class
+test\TaskFactoryTest.class
+test\TaskMementoTest.class
+test\StrategyTest.class
+test\DecoratorTest.class
+test\OrdinaPerCompletamentoTest.class
+test\TaskManagerIteratorTest.class
+test\TaskBuilderTest.class
+test\CompositeTaskTest.class
+test\TaskManagerTest.class

@@ -1,0 +1,14 @@
+@startuml
+class Task {
+  - titolo: String
+  - completata: boolean
+  + completaTask(): void
+}
+
+class TaskManager {
+  + aggiungiTask(t: Task): void
+  + rimuoviTask(t: Task): void
+}
+
+TaskManager --> Task : gestisce
+@enduml

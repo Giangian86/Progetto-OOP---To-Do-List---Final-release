@@ -1,0 +1,6 @@
+Studiare per l'esame di System;Ripassare tutto il programma del corso;2025-07-25;ALTA
+Esercizi di DSA;Terminare gli esercizi;2025-07-18;ALTA
+Progetto OOP Completo;Sviluppare un'applicazione Java completa;2025-06-28;ALTA
+Fare la spesa;Compra latte e pane;2025-06-28;MEDIA
+Consegnare progetto Computer Networks;Completare il saggio e inviare il progetto;2025-07-15;MEDIA
+Pulire garage;Rimuovere scatoloni;2025-06-20;BASSA

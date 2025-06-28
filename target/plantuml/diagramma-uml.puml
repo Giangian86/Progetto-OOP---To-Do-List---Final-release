@@ -1,0 +1,146 @@
+@startuml DiagrammaToDo
+
+class decorator.CompletatoDecorator {
+	{method} +isCompletato () : boolean
+	{method} +toString () : String
+}
+
+
+abstract class decorator.TaskDecorator {
+	{method} +toString () : String
+}
+
+
+class decorator.UrgenteDecorator {
+	{method} +toString () : String
+}
+
+
+class factory.TaskFactory {
+	{field} {static} -logger : java.util.logging.Logger
+	{method}  {static} +creaTask ( paramString1 : String , paramString2 : String , paramLocalDate3 : java.time.LocalDate , paramPriorita4 : model.Priorita ) : model.Task
+}
+
+
+class mainApp.Main {
+	{field} {static} -logger : java.util.logging.Logger
+	{method}  {static} +main ( paramString;1 : [Ljava.lang.String; ) : void
+}
+
+
+class memento.TaskCaretaker {
+	{method} +annulla () : memento.TaskMemento
+	{method} +salva ( paramTaskMemento1 : memento.TaskMemento ) : void
+}
+
+
+class memento.TaskMemento {
+	{method} +getStatoSalvato () : model.Task
+}
+
+
+class model.CompositeTask {
+	{method} +addSubtask ( paramTask1 : model.Task ) : void
+	{method} +completaTask () : void
+	{method} +getNumeroSubtasks () : int
+	{method} +isCompletato () : boolean
+	{method} +removeSubtask ( paramTask1 : model.Task ) : void
+	{method} +toString () : String
+	{method} +toStringGerarchico () : String
+	{method} -toStringGerarchico ( paramString1 : String ) : String
+}
+
+
+enum model.Priorita {
+	{field} +ALTA
+	{field} +BASSA
+	{field} +MEDIA
+}
+
+
+class model.Task {
+	{field} -completato : boolean
+	{field} -descrizione : String
+	{field} -scadenza : java.time.LocalDate
+	{field} -titolo : String
+	{method} +completaTask () : void
+	{method} +equals ( paramObject1 : Object ) : boolean
+	{method} +hashCode () : int
+	{method} +toString () : String
+}
+
+
+class model.TaskBuilder {
+	{field} -descrizione : String
+	{field} -scadenza : java.time.LocalDate
+	{field} -titolo : String
+	{method} +build () : model.Task
+}
+
+
+class model.TaskException {
+}
+
+
+class service.TaskManager {
+	{method} -aggiungiSubtasksRicorsivo ( paramCompositeTask1 : model.CompositeTask , paramList2 : java.util.List ) : void
+	{method} +aggiungiTask ( paramTask1 : model.Task ) : void
+	{method} +filtraPerPriorita ( paramPriorita1 : model.Priorita ) : java.util.List
+	{method} +getNumeroTasks () : int
+	{method} +getTutti () : java.util.List
+	{method} +getTuttiConSubtasks () : java.util.List
+	{method} +iterator () : java.util.Iterator
+	{method} +rimuoviTask ( paramTask1 : model.Task ) : void
+}
+
+
+class strategy.OrdinaPerCompletamento {
+	{method} +ordina ( paramList1 : java.util.List ) : java.util.List
+}
+
+
+class strategy.OrdinaPerPriorita {
+	{method} +ordina ( paramList1 : java.util.List ) : java.util.List
+}
+
+
+class strategy.OrdinaPerScadenza {
+	{method} +ordina ( paramList1 : java.util.List ) : java.util.List
+}
+
+
+interface strategy.TaskSortStrategy {
+	{method}  {abstract} +ordina ( paramList1 : java.util.List ) : java.util.List
+}
+
+
+class util.FileManager {
+	{method}  {static} +caricaTask ( paramString1 : String ) : java.util.List
+	{method}  {static} +salvaTask ( paramList1 : java.util.List , paramString2 : String ) : void
+}
+
+
+class util.LoggerUtil {
+	{field} {static} -logger : java.util.logging.Logger
+}
+
+
+
+
+decorator.CompletatoDecorator --|>  decorator.TaskDecorator
+decorator.TaskDecorator -->  model.Task : task
+decorator.TaskDecorator --|>  model.Task
+decorator.UrgenteDecorator --|>  decorator.TaskDecorator
+memento.TaskCaretaker "1" o-- "0..*"  memento.TaskMemento : cronologia
+memento.TaskMemento *--  model.Task : stato
+model.CompositeTask "1" o-- "0..*"  model.Task : subtasks
+model.CompositeTask --|>  model.Task
+model.Task -->  model.Priorita : priorita
+model.TaskBuilder -->  model.Priorita : priorita
+service.TaskManager "1" o-- "0..*"  model.Task : elenco
+strategy.OrdinaPerCompletamento ..|>  strategy.TaskSortStrategy
+strategy.OrdinaPerPriorita ..|>  strategy.TaskSortStrategy
+strategy.OrdinaPerScadenza ..|>  strategy.TaskSortStrategy
+
+
+@enduml

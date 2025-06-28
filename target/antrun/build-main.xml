@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="maven-antrun-" default="main">
+  <target name="main">
+    <replaceregexp file="C:\Users\glbac\OneDrive\Desktop\Progetto OOP - To Do List - Final release\target/plantuml/diagramma-uml.puml" match="@startuml" replace="@startuml DiagrammaToDo" byline="true" />
+  </target>
+</project>

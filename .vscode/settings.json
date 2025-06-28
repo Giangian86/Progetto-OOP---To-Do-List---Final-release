@@ -1,0 +1,11 @@
+{
+  "java.configuration.updateBuildConfiguration": "interactive",
+  "maven.terminal.useJavaHome": true,
+  "maven.executable.path": "mvn",
+  "maven.ignoredPlugins": [
+    "de.elnarion.maven:plantuml-generator-maven-plugin"
+  ],
+  "maven.lifecycleMapping.ignorePlugins": [
+    "de.elnarion.maven:plantuml-generator-maven-plugin"
+  ]
+}
